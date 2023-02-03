@@ -3,9 +3,9 @@ package com.mycompany.lab3_davidreyes;
 public class Bicicleta extends Vehiculo{
 String descrip;
 int radior;
-boolean tipo;
+String tipo;
 
-    public Bicicleta(String descrip, int radior, boolean tipo, String Color, String marca, String Modelo, int fabricacion, int precio, int llantas) {
+    public Bicicleta(String descrip, int radior, String tipo, String Color, String marca, String Modelo, int fabricacion, int precio, int llantas) {
         super(Color, marca, Modelo, fabricacion, precio, llantas);
         this.descrip = descrip;
         this.radior = radior;
@@ -32,11 +32,11 @@ boolean tipo;
         this.radior = radior;
     }
 
-    public boolean isTipo() {
+    public String isTipo() {
         return tipo;
     }
 
-    public void setTipo(boolean tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
