@@ -12,10 +12,9 @@ public class Clientes {
     public Clientes() {
     }
 
-    public Clientes(int id, String nombre, ArrayList<Vehiculo> vehiculos, int saldo) {
+    public Clientes(int id, String nombre, int saldo) {
         this.id = id;
         this.nombre = nombre;
-        this.vehiculos = vehiculos;
         this.saldo = saldo;
     }
 

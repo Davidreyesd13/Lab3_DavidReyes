@@ -22,7 +22,7 @@ public class Lab3_DavidReyes {
                         case 1:
                             //crear concesionaria
                             System.out.println("Ingres el nombre de la empresa");
-                            String name=l.next();
+                            String name = l.next();
                             System.out.println("Ingrese el Id de la empresa");
                             int id = l.nextInt();
                             System.out.println("Ingrese la direccion de la empresa");
@@ -33,6 +33,7 @@ public class Lab3_DavidReyes {
                             break;
                         case 2:
                             //eliminar concecionaria
+                            if(!Concesionaria.isEmpty()){
                             for (Object o : Concesionaria) {
                                 System.out.println("" + Concesionaria.indexOf(o) + "- " + o);
                             }
@@ -40,17 +41,22 @@ public class Lab3_DavidReyes {
                             int ec = l.nextInt();
                             Concesionaria.remove(ec);
                             System.out.println("Elimanda con exito");
+                            }else{
+                                System.out.println("Arreglo vacio");
+                            }
                             break;
                         case 3:
                             //Modificar concesionaria
+                            if(!Concesionaria.isEmpty()){
                             for (Object o : Concesionaria) {
                                 System.out.println("" + Concesionaria.indexOf(o) + "- " + o);
                             }
                             System.out.println("Ingrese la opcion a modificar");
-                             ec = l.nextInt();
-                             System.out.println("Ingrese la nueva direccion de la empresa");
+                           int  ec = l.nextInt();
+                            System.out.println("Ingrese la nueva direccion de la empresa");
                             dir = l.next();
-                             ((Concesionaria)Concesionaria.get(ec)).setDireccion(dir);
+                            ((Concesionaria) Concesionaria.get(ec)).setDireccion(dir);
+                            }
                             break;
                         default:
                             System.out.println("Opcion no valida");
@@ -59,12 +65,68 @@ public class Lab3_DavidReyes {
                     break;
                 case 2:
                     //crear clientes
-                    System.out.println("1.Crear cliente\n2.Eliminar cliente\n3.Listar clientes");
+                    System.out.println("1.Crear cliente\n2.Eliminar cliente");
+                    int opcl = l.nextInt();
+                    switch (opcl) {
+                        case 1:
+                            System.out.println("Ingrese el id del cliente");
+                            int id = l.nextInt();
+                            System.out.println("Ingrese el nombre del cliente");
+                            String nm = l.next();
+                            System.out.println("Ingrese el saldo disponible");
+                            int saldo = l.nextInt();
+                            Cliente.add(new Clientes(id, nm, saldo));
+                            break;
+                        case 2:
+                            if(!Cliente.isEmpty()){
+                            
+                            for (Object o : Cliente) {
+                                System.out.println("" + Cliente.indexOf(o) + "- " + o);
+                            }
+                            System.out.println("Ingrese la opcion a eliminar");
+                            int ec = l.nextInt();
+                            Cliente.remove(ec);
+                            }else{
+                                System.out.println("Arreglo vacio");
+                            }
+                            break;
+                        default:
+                            System.out.println("Opcion no valida");
+                    }
 
                     break;
                 case 3:
                     //crear Vehiculos
-                    System.out.println("1.Crear vehiculo\n2.Modificar vehiculo\n3.Eliminar cliente\n4.Listar");
+                    System.out.println("1.Crear vehiculo\n2.Modificar\n3.Eliminar\n4.Listar");
+                    int opv = l.nextInt();
+                    switch (opv) {
+                        case 1:
+                            
+                            break;
+                        case 2:
+                            
+                            break;
+                        case 3:
+                            if(!Vehiculo.isEmpty()){
+                         for (Object o : Vehiculo) {
+                                System.out.println("" + Vehiculo.indexOf(o) + "- " + o);
+                            }
+                            System.out.println("Ingrese la opcion a eliminar");
+                            int ec = l.nextInt();
+                            Vehiculo.remove(ec);
+                            }
+                            break;
+                        case 4:
+                            if(!Vehiculo.isEmpty()){
+                            for (Object o : Vehiculo) {
+                                System.out.println("" + Vehiculo.indexOf(o) + "- " + o);
+                            }}else{
+                                System.out.println("Arreglo vacio");
+                            }
+                            break;
+                        default:
+                            System.out.println("opcion no valida");
+                    }
                     break;
                 case 4:
                     //compra y ventas
