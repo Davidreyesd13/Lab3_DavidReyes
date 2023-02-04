@@ -331,11 +331,11 @@ public class Lab3_DavidReyes {
                                             case 1:
                                                 System.out.println("Ingrese el nuevo desplazamiento del motor");
                                                 l.nextLine();
-                                                String dm= l.nextLine();
+                                                String dm = l.nextLine();
                                                 ((Motocicleta) Vehiculo.get(pmc)).setDesplazamiento(dm);
                                                 break;
                                             case 2:
-                                               System.out.println("Ingrese si tiene electricidad");
+                                                System.out.println("Ingrese si tiene electricidad");
                                                 char resp = l.next().charAt(0);
                                                 boolean r;
                                                 if (resp == 's' || resp == 'S') {
@@ -350,19 +350,19 @@ public class Lab3_DavidReyes {
                                         }
                                         break;
                                     case 5:
-                                       for (Vehiculo v : Vehiculo) {
+                                        for (Vehiculo v : Vehiculo) {
                                             if (v instanceof Bicicleta) {
                                                 System.out.println("" + Vehiculo.indexOf(v) + "- " + v);
                                             }
                                         }
                                         System.out.println("Elija la opcion");
-                                         pmc = l.nextInt();
+                                        pmc = l.nextInt();
                                         System.out.println("1.Radio\n2.descripcion\n3.BMX");
-                                         mc = l.nextInt();
+                                        mc = l.nextInt();
                                         switch (mc) {
                                             case 1:
                                                 System.out.println("Ingrese la nueva cantidad de radio");
-                                                 puertas = l.nextInt();
+                                                puertas = l.nextInt();
                                                 ((Bicicleta) Vehiculo.get(pmc)).setRadior(puertas);
                                                 break;
                                             case 2:
@@ -378,7 +378,7 @@ public class Lab3_DavidReyes {
                                                 break;
                                             default:
                                                 System.out.println("Opcion no valida");
-                                        } 
+                                        }
                                         break;
                                     default:
                                         System.out.println("Opcion no valida");
@@ -412,6 +412,26 @@ public class Lab3_DavidReyes {
                     break;
                 case 4:
                     //compra y ventas
+                    System.out.println("1.Comprar\n2.Venta");
+                    int vc = l.nextInt();
+                    switch (vc) {
+                        case 1:
+                            if (!Concesionaria.isEmpty()) {
+                                
+                            }else{
+                                System.out.println("Cree primero las concesionarios");
+                            }
+                            break;
+                        case 2:
+                            if(!Concesionaria.isEmpty()){
+                                
+                            }else{
+                                System.out.println("Cree primero las concesionarios");
+                            }
+                                break;
+                        default:
+                            System.out.println("Opcion no valida");
+                    }
                     break;
                 case 0:
                     System.exit(0);
