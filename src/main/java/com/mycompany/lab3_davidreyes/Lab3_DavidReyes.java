@@ -7,7 +7,7 @@ public class Lab3_DavidReyes {
 
     public static void main(String[] args) {
         Scanner l = new Scanner(System.in);
-        int opcion = 0;
+        int opcion = 1;
         ArrayList<Clientes> Cliente = new ArrayList();
         ArrayList<Concesionaria> Concesionaria = new ArrayList();
         ArrayList<Vehiculo> Vehiculo = new ArrayList();
