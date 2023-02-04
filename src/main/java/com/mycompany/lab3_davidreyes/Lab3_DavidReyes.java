@@ -11,6 +11,7 @@ public class Lab3_DavidReyes {
         ArrayList<Clientes> Cliente = new ArrayList();
         ArrayList<Concesionaria> Concesionaria = new ArrayList();
         ArrayList<Vehiculo> Vehiculo = new ArrayList();
+
         while (opcion != 0) {
             System.out.println("1.CRUD Concesionaria\n2.CRUD Clientes"
                     + "\n3.CRUD Vehiculos\n4.Compra/Venta de vehiculos por parte de un cliente");
@@ -111,6 +112,7 @@ public class Lab3_DavidReyes {
                                 int year = l.nextInt();
                                 System.out.println("Ingrese el precio del vehiculo");
                                 int precio = l.nextInt();
+                                precio += (precio * 0.075);
                                 int llant = 0;
                                 while (llant != 2 || llant != 4) {
                                     System.out.println("Ingrese la cantidad de llantas solo 2 o 4");
@@ -396,7 +398,7 @@ public class Lab3_DavidReyes {
                                 break;
                             case 4:
                                 if (!Vehiculo.isEmpty()) {
-                                    for (Object o : Vehiculo) {
+                                    for (Vehiculo o : Vehiculo) {
                                         System.out.println("" + Vehiculo.indexOf(o) + "- " + o);
                                     }
                                 } else {
@@ -412,23 +414,93 @@ public class Lab3_DavidReyes {
                     break;
                 case 4:
                     //compra y ventas
+
                     System.out.println("1.Comprar\n2.Venta");
                     int vc = l.nextInt();
                     switch (vc) {
                         case 1:
                             if (!Concesionaria.isEmpty()) {
-                                
-                            }else{
+                                for (Concesionaria o : Concesionaria) {
+                                    System.out.println("" + Concesionaria.indexOf(o) + "- " + o);
+                                }
+                                System.out.println("Ingrese el concesionario que le gustaria visitar");
+                                int co = l.nextInt();
+                                for (Concesionaria c : Concesionaria) {
+
+                                    System.out.println("" + Concesionaria.indexOf(c) + "- " + c.getVehiculo());
+
+                                }
+                                System.out.println("Ingrese el carro que desea comprar");
+                                int occ = l.nextInt();
+                                for (Clientes o : Cliente) {
+                                    System.out.println("" + Cliente.indexOf(o) + "- " + o);
+                                }
+                                System.out.println("Ingrese el cliente que es usted");
+                                int oc = l.nextInt();
+                                int cont = 0;
+                                for (int i = 0; i < Concesionaria.get(co).getClient().size(); i++) {
+                                    if (Cliente.get(oc).equals(Concesionaria.get(co).getClient().get(i))) {
+                                        cont++;
+                                    }
+                                }
+
+                                if (!Cliente.get(oc).getVehiculos().isEmpty() && cont >= 2) {
+                                    if (Concesionaria.get(co).getVehiculo().get(occ).getPrecio() <= Cliente.get(oc).getSaldo()) {
+                                        Concesionaria.get(co).getClient().add(Cliente.get(oc));
+                                        Cliente.get(oc).getVehiculos().add(Concesionaria.get(co).getVehiculo().get(occ));
+                                        double np = Cliente.get(oc).getSaldo() - ((Concesionaria.get(co).getVehiculo().get(occ).getPrecio() * 0.025) + Concesionaria.get(co).getVehiculo().get(occ).getPrecio());
+                                        Cliente.get(oc).setSaldo((int) np);
+                                    }
+                                } else {
+                                    if (Concesionaria.get(co).getVehiculo().get(occ).getPrecio() <= Cliente.get(oc).getSaldo()) {
+                                        Concesionaria.get(co).getClient().add(Cliente.get(oc));
+                                        Cliente.get(oc).getVehiculos().add(Concesionaria.get(co).getVehiculo().get(occ));
+                                        double np = Cliente.get(oc).getSaldo() - ((Concesionaria.get(co).getVehiculo().get(occ).getPrecio() * 0.075) + Concesionaria.get(co).getVehiculo().get(occ).getPrecio());
+                                        Cliente.get(oc).setSaldo((int) np);
+                                    }
+                                }
+
+                            } else {
                                 System.out.println("Cree primero las concesionarios");
                             }
                             break;
                         case 2:
-                            if(!Concesionaria.isEmpty()){
-                                
-                            }else{
+                            if (!Concesionaria.isEmpty()) {
+                                for (Concesionaria o : Concesionaria) {
+                                    System.out.println("" + Concesionaria.indexOf(o) + "- " + o);
+                                }
+
+                                for (Clientes o : Cliente) {
+                                    System.out.println("" + Cliente.indexOf(o) + "- " + o);
+                                }
+                                System.out.println("Ingrese el cliente que es usted");
+                                int oc = l.nextInt();
+                                for (Clientes o : Cliente) {
+                                    System.out.println("" + Cliente.indexOf(o) + "- " + o.getVehiculos());
+                                }
+                                System.out.println("Ingrese el carro que desea vender");
+                                int occ = l.nextInt();
+                                System.out.println("Ingrese el concesionario que le gustaria visitar");
+                                int co = l.nextInt();
+                                int cont = 0;
+                                for (int i = 0; i < Concesionaria.get(co).getClient().size(); i++) {
+                                    if (Cliente.get(oc).equals(Concesionaria.get(co).getClient().get(i))) {
+                                        cont++;
+                                    }
+                                }
+                                if (cont>=2) {
+                                    Concesionaria.get(co).getVehiculo().add(Cliente.get(oc).getVehiculos().get(occ));
+                                    double p = Concesionaria.get(co).getSaldo() - ((Cliente.get(oc).getVehiculos().get(occ).getPrecio() * 0.050) + Cliente.get(oc).getVehiculos().get(occ).getPrecio());
+                                    Concesionaria.get(co).setSaldo((int) p);
+                                } else {
+                                    Concesionaria.get(co).getVehiculo().add(Cliente.get(oc).getVehiculos().get(occ));
+                                    double p = Concesionaria.get(co).getSaldo() - ((Cliente.get(oc).getVehiculos().get(occ).getPrecio() * 0.075) + Cliente.get(oc).getVehiculos().get(occ).getPrecio());
+                                    Concesionaria.get(co).setSaldo((int) p);
+                                }
+                            } else {
                                 System.out.println("Cree primero las concesionarios");
                             }
-                                break;
+                            break;
                         default:
                             System.out.println("Opcion no valida");
                     }
