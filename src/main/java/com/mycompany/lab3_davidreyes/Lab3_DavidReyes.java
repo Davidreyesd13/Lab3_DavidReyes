@@ -350,7 +350,35 @@ public class Lab3_DavidReyes {
                                         }
                                         break;
                                     case 5:
-
+                                       for (Vehiculo v : Vehiculo) {
+                                            if (v instanceof Bicicleta) {
+                                                System.out.println("" + Vehiculo.indexOf(v) + "- " + v);
+                                            }
+                                        }
+                                        System.out.println("Elija la opcion");
+                                         pmc = l.nextInt();
+                                        System.out.println("1.Radio\n2.descripcion\n3.BMX");
+                                         mc = l.nextInt();
+                                        switch (mc) {
+                                            case 1:
+                                                System.out.println("Ingrese la nueva cantidad de radio");
+                                                 puertas = l.nextInt();
+                                                ((Bicicleta) Vehiculo.get(pmc)).setRadior(puertas);
+                                                break;
+                                            case 2:
+                                                System.out.println("Ingrese la nueva descripcion de la bici");
+                                                l.nextLine();
+                                                String Descrip = l.nextLine();
+                                                ((Bicicleta) Vehiculo.get(pmc)).setDescrip(Descrip);
+                                                break;
+                                            case 3:
+                                                System.out.println("Ingrese Si es de Calle o BMX");
+                                                String tip = l.next();
+                                                ((Bicicleta) Vehiculo.get(pmc)).setTipo(tip);
+                                                break;
+                                            default:
+                                                System.out.println("Opcion no valida");
+                                        } 
                                         break;
                                     default:
                                         System.out.println("Opcion no valida");
