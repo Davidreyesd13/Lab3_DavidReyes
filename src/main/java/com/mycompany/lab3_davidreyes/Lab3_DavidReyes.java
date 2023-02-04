@@ -30,7 +30,7 @@ public class Lab3_DavidReyes {
                             String dir = l.next();
                             System.out.println("Ingrese el saldo de la empresa");
                             int saldo = l.nextInt();
-                            Concesionaria.add(new Concesionaria(name, Concesionaria.size() + 1, dir, saldo));
+                            Concesionaria.add(new Concesionaria(name, Concesionaria.size() + 1, dir, new ArrayList<Vehiculo>(), new ArrayList<Clientes>(), saldo));
                             break;
                         case 2:
                             //eliminar concecionaria
@@ -95,6 +95,7 @@ public class Lab3_DavidReyes {
 
                     break;
                 case 3:
+                    int contc = 0;
                     if (!Concesionaria.isEmpty()) {
                         //crear Vehiculos
                         System.out.println("1.Crear vehiculo\n2.Modificar\n3.Eliminar\n4.Listar");
@@ -113,11 +114,12 @@ public class Lab3_DavidReyes {
                                 System.out.println("Ingrese el precio del vehiculo");
                                 int precio = l.nextInt();
                                 precio += (precio * 0.075);
-                                int llant = 0;
-                                while (llant != 2 || llant != 4) {
+                                int llant;
+                                System.out.println("Ingrese la cantidad de llantas solo 2 o 4");
+                                llant = l.nextInt();
+                                while (llant != 2 && llant != 4) {
                                     System.out.println("Ingrese la cantidad de llantas solo 2 o 4");
                                     llant = l.nextInt();
-
                                 }
                                 switch (llant) {
                                     case 2:
@@ -138,6 +140,13 @@ public class Lab3_DavidReyes {
                                                     ele = false;
                                                 }
                                                 Vehiculo.add(new Motocicleta(despla, ele, cc, marc, model, year, precio, llant));
+                                                for (Concesionaria o : Concesionaria) {
+                                                    System.out.println("" + Concesionaria.indexOf(o) + "- " + o);
+                                                }
+                                                System.out.println("Elija una concesionaria");
+                                                int co = l.nextInt();
+                                                Concesionaria.get(co).getVehiculo().add(Vehiculo.get(contc));
+                                                contc++;
                                                 break;
                                             case 2:
                                                 System.out.println("Ingrese una descripcion");
@@ -158,13 +167,14 @@ public class Lab3_DavidReyes {
                                                     default:
                                                         System.out.println("OPcion no valida");
                                                 }
-                                                Vehiculo.add(new Bicicleta(descrip, rr, tipob, cc, marc, model, year, precio, llant2));
+                                                Vehiculo.add(new Bicicleta(descrip, rr, tipob, cc, marc, model, year, precio, llant));
                                                 for (Concesionaria o : Concesionaria) {
                                                     System.out.println("" + Concesionaria.indexOf(o) + "- " + o);
                                                 }
                                                 System.out.println("Elija una concesionaria");
-                                                int co = l.nextInt();
-                                                Concesionaria.get(co).getVehiculo().add(new Bicicleta(descrip, rr, tipob, cc, marc, model, year, precio, llant2));
+                                                co = l.nextInt();
+                                                Concesionaria.get(co).getVehiculo().add(Vehiculo.get(contc));
+                                                contc++;
                                                 break;
                                             default:
                                                 System.out.println("Opcion no valida");
@@ -189,7 +199,8 @@ public class Lab3_DavidReyes {
                                                 System.out.println("Elija una concesionaria");
                                                 int co = l.nextInt();
                                                 Vehiculo.add(new Carro(puer, mootr, vel, cc, marc, model, year, precio, llant));
-                                                Concesionaria.get(co).getVehiculo().add(new Carro(puer, mootr, vel, cc, marc, model, year, precio, llant));
+                                                Concesionaria.get(co).getVehiculo().add(Vehiculo.get(contc));
+                                                contc++;
                                                 break;
                                             case 2:
                                                 //crear camiones
@@ -212,7 +223,8 @@ public class Lab3_DavidReyes {
                                                 }
                                                 System.out.println("Elija una concesionaria");
                                                 co = l.nextInt();
-                                                Concesionaria.get(co).getVehiculo().add(new Camion_de_Cargar(vol, altu, retro, cc, marc, model, year, precio, llant));
+                                                Concesionaria.get(co).getVehiculo().add(Vehiculo.get(contc));
+                                                contc++;
                                                 break;
                                             case 3:
                                                 //crear buses
@@ -224,7 +236,8 @@ public class Lab3_DavidReyes {
                                                 }
                                                 System.out.println("Elija una concesionaria");
                                                 co = l.nextInt();
-                                                Concesionaria.get(co).getVehiculo().add(new Bus(cant, cc, marc, model, year, precio, llant));
+                                                Concesionaria.get(co).getVehiculo().add(Vehiculo.get(contc));
+                                                contc++;
                                                 break;
                                             default:
                                                 System.out.println("Opcion no valida");
@@ -488,7 +501,7 @@ public class Lab3_DavidReyes {
                                         cont++;
                                     }
                                 }
-                                if (cont>=2) {
+                                if (cont >= 2) {
                                     Concesionaria.get(co).getVehiculo().add(Cliente.get(oc).getVehiculos().get(occ));
                                     double p = Concesionaria.get(co).getSaldo() - ((Cliente.get(oc).getVehiculos().get(occ).getPrecio() * 0.050) + Cliente.get(oc).getVehiculos().get(occ).getPrecio());
                                     Concesionaria.get(co).setSaldo((int) p);

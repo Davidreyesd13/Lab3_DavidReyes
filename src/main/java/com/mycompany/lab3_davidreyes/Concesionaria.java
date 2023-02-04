@@ -14,10 +14,12 @@ public class Concesionaria {
     public Concesionaria() {
     }
 
-    public Concesionaria(String nombre, int id, String direccion, int saldo) {
+    public Concesionaria(String nombre, int id, String direccion, ArrayList<Vehiculo> vehiculo, ArrayList<Clientes> client, int saldo) {
         this.nombre = nombre;
         this.id = id;
         this.direccion = direccion;
+        this.vehiculo = vehiculo;
+        this.client = client;
         this.saldo = saldo;
     }
 
